@@ -1,12 +1,12 @@
-const dratini = require('../lib/index.js');
-const Dratini = dratini.Dratini;
-const Command = dratini.Command;
-const Arguments = dratini.Arguments;
-const StringArgument = dratini.StringArgument;
-const NumberArgument = dratini.NumberArgument;
-const Or = dratini.Or;
+const Dratini = require('../lib/index.js');
+const Command = Dratini.Command;
+const Arguments = Dratini.Arguments;
+const StringArgument = Dratini.StringArgument;
+const NumberArgument = Dratini.NumberArgument;
+const Or = Dratini.Or;
 
 function remindMe(args, ctx){
+    // console.log(args);
     let time = (args.hours * 60 * 60 * 1000) + (args.minutes * 60 * 1000) + (args.seconds * 1000);
     let temp = time;
 
@@ -28,6 +28,10 @@ function remindMe(args, ctx){
 
     if(seconds){
         durations.push(seconds, 'seconds');
+    }
+
+    if(durations.length === 0){
+        durations = ['right now'];
     }
 
     let in_time = durations.join(' ');
@@ -72,15 +76,16 @@ const cmd = new Command(
         }
     }), remindMe,
     {
+        name: 'Set Reminder',
         desc: 'Set a reminder for something.'
     }
 );
 
 const Eris = require('eris');
 const conf = require('./conf.json');
-const eris = new Eris(conf.bot_token);
+const eris = new Eris(process.env.dratini_token);
 const bot = new Dratini();
 
-bot.init(eris, conf.prefix);
+bot.init(eris, 'dratini');
 bot.register(cmd);
 eris.connect();
