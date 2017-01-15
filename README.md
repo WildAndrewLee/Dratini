@@ -2,6 +2,19 @@
 
 Dratini is an Eris based Discord bot framework that allows developers to create commands declaratively. The goal of Dratini is to provide developers an easier way to create commands. Using Dratini, developers do not need to parse any messages themselves as Dratini will provide already-parsed arguments based off of pre-defined command structures.
 
+# Available Command Argument Types
+
+```
+Arguments
+BooleanArgument
+NumberArgument
+StringArgument
+ListArgument
+VariadicArgument
+
+Or
+```
+
 # Example Command
 
 ```js
