@@ -1,26 +1,12 @@
-# Dratini
-
-Dratini is an Eris based Discord bot framework that allows developers to create commands declaratively.
-
-# Example Command
-
-```js
-const Eris = require('eris');
-
-const conf = require('./conf.json');
-
-const eris = new Eris(conf.bot_token);
-
-const Dratini = require('./lib/dratini.js');
-const Command = require('./lib/command.js');
-const Arguments = require('./lib/args/arguments.js');
-const StringArgument = require('./lib/args/stringargument.js');
-const NumberArgument = require('./lib/args/numberargument.js');
-const MemberArgument = require('./lib/args/memberargument.js');
-
-const bot = new Dratini();
+const Command = require('../lib/command.js');
+const Arguments = require('../lib/args/arguments.js');
+const StringArgument = require('../lib/args/stringargument.js');
+const NumberArgument = require('../lib/args/numberargument.js');
+const Or = require('../lib/args/or.js');
 
 function remindMe(args, ctx){
+    console.log(args);
+
     let time = (args.hours * 60 * 60 * 1000) + (args.minutes * 60 * 1000) + (args.seconds * 1000);
     let temp = time;
 
@@ -55,9 +41,7 @@ function remindMe(args, ctx){
     });
 }
 
-bot.init(eris, conf.prefix);
-
-bot.register(new Command(
+const cmd = new Command(
     new Arguments([
         'remind',
         'me',
@@ -70,15 +54,15 @@ bot.register(new Command(
         ], {required: false}),
         new Arguments([
             new NumberArgument('hours'),
-            'hours'
+            new Or('hours_label', ['hours', 'hour'])
         ], {required: false}),
         new Arguments([
             new NumberArgument('minutes'),
-            'minutes'
+            new Or('minutes_label', ['minutes', 'minute'])
         ], {required: false}),
         new Arguments([
             new NumberArgument('seconds'),
-            'seconds'
+            new Or('seconds_label', ['seconds', 'second'])
         ], {required: false})
     ], {
         defaults: {
@@ -90,7 +74,6 @@ bot.register(new Command(
     {
         desc: 'Set a reminder for something.'
     }
-));
+);
 
-eris.connect();
-```
+module.exports = cmd;

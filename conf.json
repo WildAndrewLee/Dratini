@@ -1,5 +1,5 @@
 {
     "bot_token": "MjY3ODM3MzgwMjk4NDA3OTM4.C1XX_g.oqRZRe2XDrwe5YVY1BnAqo_lKNA",
-    "bot_dir": "bots",
+    "cmd_dir": "commands",
     "prefix": "dratini "
 }
