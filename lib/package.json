@@ -1,0 +1,19 @@
+{
+  "name": "dratini",
+  "version": "1.0.1",
+  "description": "A Discord bot library built on Eris.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WildAndrewLee/Dratini.git"
+  },
+  "author": "Andrew Lee <andrew@reticent.io> (https://reticent.io)",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/WildAndrewLee/Dratini/issues"
+  },
+  "homepage": "https://github.com/WildAndrewLee/Dratini#readme"
+}
