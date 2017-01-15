@@ -5,8 +5,6 @@ const NumberArgument = require('../lib/args/numberargument.js');
 const Or = require('../lib/args/or.js');
 
 function remindMe(args, ctx){
-    console.log(args);
-
     let time = (args.hours * 60 * 60 * 1000) + (args.minutes * 60 * 1000) + (args.seconds * 1000);
     let temp = time;
 
