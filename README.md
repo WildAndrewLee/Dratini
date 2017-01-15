@@ -11,6 +11,7 @@ NumberArgument
 StringArgument
 ListArgument
 VariadicArgument
+MemberArgument
 
 Or
 ```
