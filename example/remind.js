@@ -1,8 +1,10 @@
-const Command = require('../lib/command.js');
-const Arguments = require('../lib/args/arguments.js');
-const StringArgument = require('../lib/args/stringargument.js');
-const NumberArgument = require('../lib/args/numberargument.js');
-const Or = require('../lib/args/or.js');
+const dratini = require('../lib/index.js');
+const Dratini = dratini.Dratini;
+const Command = dratini.Command;
+const Arguments = dratini.Arguments;
+const StringArgument = dratini.StringArgument;
+const NumberArgument = dratini.NumberArgument;
+const Or = dratini.Or;
 
 function remindMe(args, ctx){
     let time = (args.hours * 60 * 60 * 1000) + (args.minutes * 60 * 1000) + (args.seconds * 1000);
@@ -74,4 +76,11 @@ const cmd = new Command(
     }
 );
 
-module.exports = cmd;
+const Eris = require('eris');
+const conf = require('./conf.json');
+const eris = new Eris(conf.bot_token);
+const bot = new Dratini();
+
+bot.init(eris, conf.prefix);
+bot.register(cmd);
+eris.connect();
