@@ -8,8 +8,8 @@ const NumberArgument = require('../lib/args/numberargument.js');
 const MemberArgument = require('../lib/args/memberargument.js');
 
 class Test extends Skeleton {
-    constructor(){
-        super();
+    init(eris, prefix){
+        super.init(eris, prefix);
 
         this.register(new Command(
             new Arguments([
@@ -62,7 +62,6 @@ class Test extends Skeleton {
         temp -= (minutes * 60 * 1000);
         let seconds = temp / 1000;
 
-
         let durations = [];
 
         if(hours){
@@ -79,11 +78,11 @@ class Test extends Skeleton {
 
         let in_time = durations.join(' ');
 
-        this.eris.createMessage(ctx.channel.id, `Okay. I'll remind you to **${args.reminder}** in **${in_time}**.`);
+        this.createMessage(ctx.channel.id, `Okay. I'll remind you to **${args.reminder}** in **${in_time}**.`);
 
-        this.eris.getDMChannel(ctx.author.id).then((channel) => {
+        this.getDMChannel(ctx.author.id).then((channel) => {
             setTimeout(() => {
-                this.eris.createMessage(channel.id, `Remember to **${args.reminder}**.`);
+                this.createMessage(channel.id, `Remember to **${args.reminder}**.`);
             }, time);
         });
     }
