@@ -3,6 +3,7 @@ const Command = Dratini.Command;
 const Arguments = Dratini.Arguments;
 const StringArgument = Dratini.StringArgument;
 const NumberArgument = Dratini.NumberArgument;
+const VariadicArgument = Dratini.VariadicArgument;
 const Or = Dratini.Or;
 
 function remindMe(args, ctx){
@@ -81,6 +82,27 @@ const cmd = new Command(
     }
 );
 
+function wut(args, ctx){
+    console.log(args);
+}
+
+const test = new Command(
+    new Arguments([
+        'test',
+        new VariadicArgument('zzz', new StringArgument)
+    ], {
+        defaults: {
+            hours: 0,
+            minutes: 0,
+            seconds: 0
+        }
+    }), wut,
+    {
+        name: 'Set Reminder',
+        desc: 'Set a reminder for something.'
+    }
+);
+
 const Eris = require('eris');
 const conf = require('./conf.json');
 const eris = new Eris(process.env.dratini_token);
@@ -88,4 +110,5 @@ const bot = new Dratini();
 
 bot.init(eris, 'dratini');
 bot.register(cmd);
+bot.register(test);
 eris.connect();
