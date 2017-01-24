@@ -1,6 +1,6 @@
 {
   "name": "dratini",
-  "version": "1.1.8",
+  "version": "1.1.10",
   "description": "A Discord bot library built on Eris.",
   "main": "index.js",
   "scripts": {
